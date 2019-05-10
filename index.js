@@ -27,12 +27,19 @@ function lookUpSummonerName() {
                 let champion = $('#champion-name').val();
                 let url = `http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion/${champion}.json`
                 fetch(url)
-                    .then(response => response.json())
-                    .then(responseJson => {
-                        championId = responseJson.data[champion].key   
-                        lookUpMatchLists(accountId, championId);     
+                    .then(response => {
+                        if (response.status == 403) {
+                            alert('Please enter a valid Champion name.')
+                        } else {
+                            fetch(url)
+                                .then(response => response.json())
+                                .then(responseJson => {
+                                    championId = responseJson.data[champion].key   
+                                    lookUpMatchLists(accountId, championId);     
+                                })
+                                .catch(error => alert(error))            
+                        }
                     })
-                    .catch(error => alert(error))
             })
             .catch(error => alert(error))
     })
@@ -41,9 +48,18 @@ function lookUpSummonerName() {
 function lookUpMatchLists(accountId, championId) {
     let url = `https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/${accountId}?champion=${championId}&queue=420&endIndex=10`
     fetch(proxyUrl + url, options)
-        .then(response => response.json())
-        .then(responseJson => lookUpMatchInfo(responseJson))
-        .catch(error => alert(error))
+        .then(response => {
+            if (response.status == 404) {
+                alert('No matches found for this Champion')
+            } else if (response.status == 400) {
+                alert('Please enter a valid Summoner name.')
+            } else {
+                fetch(proxyUrl + url, options)
+                    .then(response => response.json())
+                    .then(responseJson => lookUpMatchInfo(responseJson))
+                    .catch(error =>  alert('error'))            
+            }
+        })
 };
 
 function lookUpMatchInfo(responseJson) {
@@ -82,8 +98,9 @@ function lookUpMatchInfo(responseJson) {
                         }, 1100)
                     }
                 })
-                .catch(error => alert(error)))
-        .catch(error => alert(error))
+                .catch(error => console.log(error))
+        .catch(error => console.log(error))
+        )
     }
 }
 
@@ -122,6 +139,8 @@ function displayResults(total) {
         <button id="test-again">Test Again</button>
     `)
 
+    $('input').remove()
+    
     $('#js-results').append(`
         <p>Your build has a</p>
         <p>${displayTotal}% win rate</p>
