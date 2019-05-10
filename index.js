@@ -50,6 +50,7 @@ function lookUpMatchInfo(responseJson) {
     let win = 0
     let lose = 0
     let total = 0
+    let matches = 0
 
     for (i = 0; i < responseJson.matches.length; i++) {
     let url = `https://na1.api.riotgames.com/lol/match/v4/matches/${responseJson.matches[i].gameId}`
@@ -67,9 +68,11 @@ function lookUpMatchInfo(responseJson) {
                     } else {
                         lose++
                     }
+                    matches++
+                    console.log(matches)
                     console.log(i)
                     console.log(responseJson.matches.length)            
-                    if (i == responseJson.matches.length-1) {
+                    if (matches == responseJson.matches.length) {
                         setTimeout(function() {
                             total = win/(win+lose)*100
                             console.log(total)    
