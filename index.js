@@ -2,7 +2,7 @@ let options = {
     headers: new Headers({
         "Origin": "https://developer.riotgames.com",
         "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
-        "X-Riot-Token": "RGAPI-4289fff8-214b-45e4-a8a8-558d4a7c35f3",
+        "X-Riot-Token": "RGAPI-f8d001a3-06f1-441c-ac9c-9282c2b2488c",
         "Accept-Language": "en-US,en;q=0.9",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
     })
@@ -140,7 +140,7 @@ function displayResults(total) {
     `)
 
     $('input').remove()
-    
+
     $('#js-results').append(`
         <p>Your build has a</p>
         <p>${displayTotal}% win rate</p>
