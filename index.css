@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100vw;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+}
+
+input {
+    display: block;
+    margin-top: 1em;
+    width: 195px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    margin-top: 2em;
+}
+
+#js-results {
+    text-align: center;
+    margin-top: 2em;
+}
+
+#how-to {
+    margin-left: 2em;
+    margin-right: 2em;
+}

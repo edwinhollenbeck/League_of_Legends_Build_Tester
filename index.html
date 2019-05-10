@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta description="App to test League of Legends builds by displaying win-rates.">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+        <link rel="stylesheet" href="index.css">
+        <title>League of Legends Build Tester</title>
+    </head>
+    <body>
+        <h1>League of Legends Build Tester</h1>
+        <form>
+            <input type="text" placeholder="Summoner Name" id="summoner-name" required>
+            <input type="text" placeholder="Champion Name" id="champion-name" required>
+            <button id="go">Go!</button>
+        </form>
+        <section id="js-results"></section>
+        <section id="how-to">
+        <h2>How to Use</h2>
+        <p>Before using this tool, play 10 matches with the same build.</p>
+        <p>That can be as simple as playing the same champion, or more complicated such as using the same runes with that champion. You can even use the same items if desired.</p>
+        <p>Due to the fact that both certain runes and items may be changed per game depending on the conditions, how strict you want the testing to be is left up to you; only the winrate is returned.</p>
+        </section>
+    </body>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+    </script>      
+    <script src="./index.js"></script>
+</html>
