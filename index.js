@@ -9,7 +9,7 @@ let options = {
 }
 
 let proxyUrl = "https://cors-anywhere.herokuapp.com/"
-
+let riotSummonerName = ""
 
 function lookUpSummonerName() {
     let championId = 0
@@ -24,6 +24,7 @@ function lookUpSummonerName() {
             .then(response => response.json())
             .then(responseJson => {
                 let accountId = responseJson.accountId
+                riotSummonerName = responseJson.name
                 let champion = $('#champion-name').val();
                 let url = `http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion/${champion}.json`
                 fetch(url)
@@ -57,7 +58,7 @@ function lookUpMatchLists(accountId, championId) {
                 fetch(proxyUrl + url, options)
                     .then(response => response.json())
                     .then(responseJson => lookUpMatchInfo(responseJson))
-                    .catch(error => alert('Please make sure Summoner Name is spelled correctly, including capitalization.'))            
+                    .catch(error => alert(error))
             }
         })
 };
@@ -81,8 +82,6 @@ function lookUpMatchInfo(responseJson) {
                     console.log(finalResult)
                     if (finalResult == true) {
                         win++
-                    } else if (finalResult == undefined) {
-                        break;
                     } else {
                         lose++
                     }
@@ -108,7 +107,7 @@ function lookUpMatchInfo(responseJson) {
 
 function getId(responseJson) {
     for (i = 0; i < responseJson.participantIdentities.length; i++) {
-        if (responseJson.participantIdentities[i].player.summonerName == $('#summoner-name').val()) {
+        if (responseJson.participantIdentities[i].player.summonerName == riotSummonerName) {
             let participantId = responseJson.participantIdentities[i].participantId
             return participantId
         }
