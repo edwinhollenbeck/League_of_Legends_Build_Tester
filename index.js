@@ -81,6 +81,8 @@ function lookUpMatchInfo(responseJson) {
                     console.log(finalResult)
                     if (finalResult == true) {
                         win++
+                    } else if (finalResult == undefined) {
+                        alert('Please make sure Summoner Name is spelled correctly, including capitalization.')
                     } else {
                         lose++
                     }
