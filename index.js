@@ -57,7 +57,7 @@ function lookUpMatchLists(accountId, championId) {
                 fetch(proxyUrl + url, options)
                     .then(response => response.json())
                     .then(responseJson => lookUpMatchInfo(responseJson))
-                    .catch(error =>  alert('error'))            
+                    .catch(error => alert('Please make sure Summoner Name is spelled correctly, including capitalization.'))            
             }
         })
 };
@@ -82,7 +82,7 @@ function lookUpMatchInfo(responseJson) {
                     if (finalResult == true) {
                         win++
                     } else if (finalResult == undefined) {
-                        alert('Please make sure Summoner Name is spelled correctly, including capitalization.')
+                        break;
                     } else {
                         lose++
                     }
