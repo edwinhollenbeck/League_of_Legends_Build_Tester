@@ -2,7 +2,7 @@ let options = {
     headers: new Headers({
         "Origin": "https://developer.riotgames.com",
         "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
-        "X-Riot-Token": "RGAPI-f8d001a3-06f1-441c-ac9c-9282c2b2488c",
+        "X-Riot-Token": "RGAPI-20242e04-f0e2-4054-9ced-aeee66573c4c",
         "Accept-Language": "en-US,en;q=0.9",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
     })
@@ -26,7 +26,7 @@ function lookUpSummonerName() {
                 let accountId = responseJson.accountId
                 riotSummonerName = responseJson.name
                 let champion = $('#champion-name').val();
-                let url = `http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion/${champion}.json`
+                let url = `https://ddragon.leagueoflegends.com/cdn/9.3.1/data/en_US/champion/${champion}.json`
                 fetch(url)
                     .then(response => {
                         if (response.status == 403) {
