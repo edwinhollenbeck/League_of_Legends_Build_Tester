@@ -25,7 +25,7 @@ function lookUpSummonerName() {
             .then(responseJson => {
                 let accountId = responseJson.accountId
                 riotSummonerName = responseJson.name
-                let champion = $('#champion-name').val();
+                let champion = $('option:checked').val();
                 console.log(champion);
                 let url = `https://ddragon.leagueoflegends.com/cdn/9.3.1/data/en_US/champion/${champion}.json`
                 fetch(url)
@@ -143,6 +143,7 @@ function displayResults(total) {
         `)
 
         $('input').remove()
+        $('select').remove()
 
         $('#js-results').append(`
             <p>Your build has a</p>
@@ -155,6 +156,7 @@ function displayResults(total) {
         `)
 
         $('input').remove()
+        $('select').remove()
 
         $('#js-results').append(`
             <p>Your build has a</p>

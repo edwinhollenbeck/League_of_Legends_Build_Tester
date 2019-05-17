@@ -14,13 +14,15 @@ h1 {
     font-size: 3em;
 }
 
-input {
+input, select {
     display: block;
     margin-top: 1em;
-    width: 20em;
-    height: 3em;
+    width: 30em;
+    height: 4em;
     border-color: gold;
     border-width: .4em;
+    font-size: 1.5em;
+    padding: 1em;
 }
 
 form {
@@ -32,10 +34,11 @@ form {
 
 button {
     margin-top: 2em;
-    width: 15em;
-    height: 2.5em;
+    width: 20em;
+    height: 3em;
     border-color: gold;
     border-width: .4em;
+    font-size: 1.5em;
 }
 
 #js-results {
@@ -48,10 +51,6 @@ button {
     margin-right: 2em;
     color: black;
     font-size: 2em;
-}
-
-#champion-name {
-    text-transform: capitalize;
 }
 
 img {
