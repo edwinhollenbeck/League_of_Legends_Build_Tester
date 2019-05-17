@@ -4,7 +4,7 @@ Live Page: https://edwinhollenbeck.github.io/api_capstone/
 
 Screenshots:
 
-<img APICapstoneScreenshot.png>
+![alt text] (./APICapstoneScreenshot.png)
 <img APICapstoneScreenshotResults.png>
 <img APICapstoneScreenshotResultsFail.png>
 
