@@ -5,16 +5,22 @@
 html {
     width: 100vw;
     height: 100vh;
+    background-color: #33AFFF;
 }
 
 h1 {
     text-align: center;
+    color: black;
+    font-size: 3em;
 }
 
 input {
     display: block;
     margin-top: 1em;
-    width: 195px;
+    width: 20em;
+    height: 3em;
+    border-color: gold;
+    border-width: .4em;
 }
 
 form {
@@ -26,6 +32,10 @@ form {
 
 button {
     margin-top: 2em;
+    width: 15em;
+    height: 2.5em;
+    border-color: gold;
+    border-width: .4em;
 }
 
 #js-results {
@@ -36,8 +46,25 @@ button {
 #how-to {
     margin-left: 2em;
     margin-right: 2em;
+    color: black;
+    font-size: 2em;
 }
 
 #champion-name {
     text-transform: capitalize;
+}
+
+img {
+    width: 90vw;
+    margin: auto;
+    display: block;
+    margin-bottom: 1em;
+}
+
+#js-results {
+    font-size: 2em;
+}
+
+#wr-gif {
+    width: 60vw;
 }

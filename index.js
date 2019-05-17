@@ -137,16 +137,31 @@ function calculateTotal() {
 
 function displayResults(total) {
     let displayTotal = total.toFixed(2)
-    $('#go').replaceWith(`
+    if (displayTotal <= 50) {
+        $('#go').replaceWith(`
+            <button id="test-again">Test Again</button>
+        `)
+
+        $('input').remove()
+
+        $('#js-results').append(`
+            <p>Your build has a</p>
+            <p>${displayTotal}% win rate</p>
+            <img id="wr-gif" src="./fail.gif">
+        `)
+    } else {
+        $('#go').replaceWith(`
         <button id="test-again">Test Again</button>
-    `)
+        `)
 
-    $('input').remove()
+        $('input').remove()
 
-    $('#js-results').append(`
-        <p>Your build has a</p>
-        <p>${displayTotal}% win rate</p>
-    `)
+        $('#js-results').append(`
+            <p>Your build has a</p>
+            <p>${displayTotal}% win rate</p>
+            <img id="wr-gif" src="./victory.gif">
+        `)
+    }
 }
 
 function testAgain() {
