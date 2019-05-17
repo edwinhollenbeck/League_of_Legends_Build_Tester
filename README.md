@@ -1,6 +1,6 @@
 <h1>League of Legends Build Tester</h1>
 
-Live Page: https://edwinhollenbeck.github.io/api_capstone/
+Live Page: https://edwinhollenbeck.github.io/League_of_Legends_Build_Tester/
 
 <h2>Summary</h2>
 A tool to test the effectiveness of League of Legends champion builds. Users enter their Summoner names and select

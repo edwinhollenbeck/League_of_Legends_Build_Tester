@@ -2,31 +2,32 @@ let options = {
     headers: new Headers({
         "Origin": "https://developer.riotgames.com",
         "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
-        "X-Riot-Token": "RGAPI-539274e4-8c36-4c0c-bedf-b23784bc8913",
+        "X-Riot-Token": "RGAPI-539274e4-8c36-4c0c-bedf-b23784bc8913", //This API key has to be refreshed every 24 hours.
         "Accept-Language": "en-US,en;q=0.9",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
     })
 }
 
-let proxyUrl = "https://cors-anywhere.herokuapp.com/"
+let proxyUrl = "https://cors-anywhere.herokuapp.com/" //Used to avoid CORS issues.
 let riotSummonerName = ""
 
+//This actually looks up the Summoner and Champion names. The first fetch using the summonerName returns the
+//encrypted account ID, which is needed for the later fetches as that's what Riot wants us to use to access player
+//data. The second fetch returns the champion ID, which is what Riot uses to access champion data instead of their
+//names.
 function lookUpSummonerName() {
     let championId = 0
     
     $('form').submit(function(event) {
         event.preventDefault();
         let summonerName = $('#summoner-name').val();
-        /*let value = summonerName.match(/[0-9\\p{L} _\\.]+/)
-        console.log(value);*/
         let url = `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}`
         fetch(proxyUrl + url, options)
             .then(response => response.json())
             .then(responseJson => {
                 let accountId = responseJson.accountId
-                riotSummonerName = responseJson.name
+                riotSummonerName = responseJson.name //Ensures the Summoner name matches what Riot has on file to avoid errors.
                 let champion = $('option:checked').val();
-                console.log(champion);
                 let url = `https://ddragon.leagueoflegends.com/cdn/9.3.1/data/en_US/champion/${champion}.json`
                 fetch(url)
                     .then(response => {
@@ -47,6 +48,8 @@ function lookUpSummonerName() {
     })
 };
 
+//Returns the matches, filtered by the user and champion chosen by the user. Also limited to ranked matches
+//(queue=420), and a max of 10 (endIndex=10) which is set because of the limits of the API key.
 function lookUpMatchLists(accountId, championId) {
     let url = `https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/${accountId}?champion=${championId}&queue=420&endIndex=10`
     fetch(proxyUrl + url, options)
@@ -64,11 +67,13 @@ function lookUpMatchLists(accountId, championId) {
         })
 };
 
+//Analyses the matches to determine a win or a loss, as well as the final total, and displays it.
 function lookUpMatchInfo(responseJson) {
     let win = 0
     let lose = 0
     let total = 0
-    let matches = 0
+    let matches = 0 //Due to the matches not being returned in order, this was needed to know when all of them had
+                    //been returned so the final total could be calculated.
 
     for (i = 0; i < responseJson.matches.length; i++) {
     let url = `https://na1.api.riotgames.com/lol/match/v4/matches/${responseJson.matches[i].gameId}`
@@ -80,20 +85,17 @@ function lookUpMatchInfo(responseJson) {
                 .then(response => response.json())
                 .then(responseJson => getMatchResult(responseJson, result))
                 .then(finalResult => {
-                    console.log(finalResult)
                     if (finalResult == true) {
                         win++
                     } else {
                         lose++
                     }
                     matches++
-                    console.log(matches)
-                    console.log(i)
-                    console.log(responseJson.matches.length)            
                     if (matches == responseJson.matches.length) {
+                        //The timeouts are accounting for the time it takes to get the results from Riot's API so
+                        //the total isn't calculated too soon.
                         setTimeout(function() {
                             total = win/(win+lose)*100
-                            console.log(total)    
                         }, 1000)
                         setTimeout(function() {
                             displayResults(total);
@@ -106,6 +108,7 @@ function lookUpMatchInfo(responseJson) {
     }
 }
 
+//Identifies the user in the matches, so their data can be pulled.
 function getId(responseJson) {
     for (i = 0; i < responseJson.participantIdentities.length; i++) {
         if (responseJson.participantIdentities[i].player.summonerName == riotSummonerName) {
@@ -115,6 +118,7 @@ function getId(responseJson) {
     }
 }
 
+//Returns if the match for the user was a win or loss.
 function getMatchResult(responseJson, result) {
     for (i = 0; i < responseJson.participants.length; i++) {
         if (responseJson.participants[i].participantId == result) {
@@ -123,18 +127,8 @@ function getMatchResult(responseJson, result) {
     }
 }
 
-function winPercentage(finalResult) {
-    if (finalResult == true) {
-        win++
-    } else {
-        lose++
-    }
-}
-
-function calculateTotal() {
-    total = win/(win+lose)*100
-}
-
+//Formats the percentage, removes the inputs, modifies the button to reset the form when the user is done, and
+//displays a different image depending on how good the build is.
 function displayResults(total) {
     let displayTotal = total.toFixed(2)
     if (displayTotal <= 50) {
