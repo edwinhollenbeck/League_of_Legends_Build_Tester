@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1>League of Legends Build Tester</h1>
-        <img src="./Runes_2018.jpg">
+        <img id="runes" src="./Runes_2018.jpg">
         <form>
             <input type="text" placeholder="Summoner Name" id="summoner-name" required>
             <select>
@@ -160,10 +160,30 @@
         </form>
         <section id="js-results"></section>
         <section id="how-to">
-        <h2>How to Use</h2>
-        <p>Before using this tool, play 10 matches with the same build.</p>
-        <p>That can be as simple as playing the same champion, or more complicated such as using the same runes with that champion. You can even use the same items if desired.</p>
-        <p>Due to the fact that both certain runes and items may be changed per game depending on the conditions, how strict you want the testing to be is left up to you; only the winrate is returned.</p>
+            <h2>About the App</h2>
+            <p>This app is intended for current ranked players of League of Legends, and is designed to assist with
+               gauging the effectiveness of champion builds. Riot's matchmaking system is designed to keep all
+               players more or less at a 50% win-rate, so any build providing a higher win-rate than that is
+               generally considered to be good. Up to ten ranked matches per champion that you want to test need to
+               be played before using the tool. So decide what build you'd like to test and then play as many matches,
+               up to ten, that you want to use for testing. The more matches you play the more accurate the results
+               will be. A build includes the runes selected, as well as items used if you want to get more specific.</p>
+            <h2>How to Use</h2>
+            <p>Enter your Summoner name and select a champion you want to test for from the drop-down list. Once
+               you select the <strong>Go!</strong> button the tool will calculate your win-rate from the last 10
+               matches played with that champion, less if you haven't played that many matches yet. Once you get
+               your result you can select the <strong>Test Again</strong> button to test another champion's build
+               or retest the same champion after playing more matches with the same build or a new one.</p>
+            <h2>Future Enhancements</h2>
+            <p>If this app is approved by Riot for public use I'd like to make the following enhancements once my
+               API key is upgraded.<br>
+                <ul>
+                    <li>Add an option to choose the number of matches to use.</li>
+                    <li>Allow users to select a build (runes and items) and get results for matches where only those selections
+                    were used.</li>
+                    <li>Allow users to create an account to store their builds and record their testing results.</li>
+                </ul>
+                </p>
         </section>
     </body>
     <script

@@ -51,6 +51,7 @@ button {
     margin-right: 2em;
     color: black;
     font-size: 2em;
+    padding-bottom: 10em;
 }
 
 img {
@@ -66,4 +67,12 @@ img {
 
 #wr-gif {
     width: 60vw;
+}
+
+#runes {
+    width: 70vw;
+}
+
+p {
+    text-indent: 2em;
 }
