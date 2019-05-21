@@ -76,3 +76,7 @@ img {
 p {
     text-indent: 2em;
 }
+
+label {
+    margin-top: 2em;
+}

@@ -3,8 +3,10 @@ let options = {
         "Origin": "https://developer.riotgames.com",
         "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
         "X-Riot-Token": "RGAPI-3106d7c1-fb1e-4ca4-9d31-beded652040e", //This API key has to be refreshed every 24 hours.
-        "Accept-Language": "en-US,en;q=0.9",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
+        "Accept-Language": "en-us",
+        //"Accept-Language": "en-US,en;q=0.9",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Safari/605.1.15"
+        //"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
     })
 }
 
@@ -136,26 +138,28 @@ function displayResults(total) {
             <button id="test-again">Test Again</button>
         `)
 
+        $('label').remove()
         $('input').remove()
         $('select').remove()
 
         $('#js-results').append(`
             <p>Your build has a</p>
             <p>${displayTotal}% win rate</p>
-            <img id="wr-gif" src="./fail.gif">
+            <img id="wr-gif" src="./fail.gif" alt="Image of Teemo blowing up a shroom and laughing for a bad win-rate.">
         `)
     } else {
         $('#go').replaceWith(`
         <button id="test-again">Test Again</button>
         `)
 
+        $('label').remove()
         $('input').remove()
         $('select').remove()
 
         $('#js-results').append(`
             <p>Your build has a</p>
             <p>${displayTotal}% win rate</p>
-            <img id="wr-gif" src="./victory.gif">
+            <img id="wr-gif" src="./victory.gif" alt="Image of Dancing Garen for a good win-rate.">
         `)
     }
 }
