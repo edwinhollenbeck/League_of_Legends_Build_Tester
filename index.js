@@ -2,7 +2,7 @@ let options = {
     headers: new Headers({
         "Origin": "https://developer.riotgames.com",
         "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
-        "X-Riot-Token": "RGAPI-06e760e9-915a-4bf4-b0d2-dfd5a35bc80f", //This API key has to be refreshed every 24 hours.
+        "X-Riot-Token": "RGAPI-526886f0-2229-4806-b249-1c4326b944e2", //This API key has to be refreshed every 24 hours.
         "Accept-Language": "en-us",
         //"Accept-Language": "en-US,en;q=0.9",
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Safari/605.1.15"
